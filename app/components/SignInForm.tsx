@@ -115,7 +115,7 @@ function Input({ label, type, value, autoComplete, onChange, togglePasswordVisib
     <div className='relative w-full'>
       <Label text={label} />
       <input
-        type={type === 'password' && isPasswordVisible ? 'text' : 'password'}
+        type={type === 'password' ? (isPasswordVisible ? 'text' : 'password') : type}
         value={value}
         autoComplete={autoComplete}
         onChange={onChange}
