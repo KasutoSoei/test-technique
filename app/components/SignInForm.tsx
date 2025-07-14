@@ -13,6 +13,7 @@ export default function SignInForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agree, setAgree] = useState(false);
 
+  // Password regex
   const regex = {
     minuscule: /[a-z]/.test(password),
     majuscule: /[A-Z]/.test(password),
@@ -36,7 +37,7 @@ export default function SignInForm() {
     e.preventDefault(); // Prevent the page from reloading on form submission
 
     // Reset error messages each time the form is submitted
-    const newErrorMessages: typeof errorMessages = {
+    const newErrorMessages = {
       companyName: companyName.trim() ? '' : "Veuillez entrer le nom de l'entreprise.",
       companyType: companyType ? '' : "Veuillez choisir un type d’entreprise.",
       location: location ? '' : "Veuillez choisir une région.",
@@ -51,12 +52,16 @@ export default function SignInForm() {
   };
 
   return (
+
+    
     <div className="bg-white w-[560px] rounded-[20px] py-[50px] px-[40px] max-lg:w-[530px] max-sm:w-full max-xs:py-[60px]">
+      {/* Logo */}
       <div className="text-center mb-8">
         <img src="../kouerlogo.svg" alt="Logo Kouer" className="mx-auto w-[160px] h-[50px]" />
         <h2 className="text-[#4EA04C] text-[20px] mt-2 font-semibold">Commencez l’aventure !</h2>
       </div>
 
+      {/* Form */}
       <form autoComplete="off" className="space-y-[20px]" onSubmit={submitForm}>
         <Input label="Nom de l'entreprise" type="text" value={companyName} autoComplete="off" onChange={(e) => setCompanyName(e.target.value)} errorMessage={errorMessages.companyName} />
         <Select label="Type d’entreprise" placeholder="Sélectionnez un type d’entreprise" value={companyType} autoComplete="off" options={['Type d\'entreprise A', 'Type d\'entreprise B', 'Type d\'entreprise C', 'Type d\'entreprise D']} onChange={(e) => setCompanyType(e.target.value)} errorMessage={errorMessages.companyType} />
@@ -64,7 +69,7 @@ export default function SignInForm() {
         <Input label="Numéro de téléphone" type="tel" value={phone} autoComplete="off" onChange={(e) => setPhone(e.target.value)} errorMessage={errorMessages.phone} />
         <Input label="Adresse mail" type="email" value={email} autoComplete="off" onChange={(e) => setEmail(e.target.value)} errorMessage={errorMessages.email} />
 
-        {/* Mot de passe */}
+        {/* Password */}
         <div>
           <Input
             label="Mot de passe"
@@ -94,7 +99,7 @@ export default function SignInForm() {
           </ul>
         </div>
 
-        {/* Confirmation */}
+        {/* Confirm password */}
         <Input
           label="Confirmer le mot de passe"
           type="password"
@@ -106,7 +111,7 @@ export default function SignInForm() {
           errorMessage={errorMessages.confirm}
         />
 
-        {/* CGU */}
+        {/* Conditions */}
         <div className="flex flex-col gap-1">
           <div className="flex items-start gap-2">
             <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-[6px]" />
@@ -122,6 +127,7 @@ export default function SignInForm() {
           </div>
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
           className="w-full py-3 rounded-full font-semibold text-white bg-[#4EA04C] hover:opacity-80 cursor-pointer"
@@ -136,6 +142,8 @@ export default function SignInForm() {
     </div>
   );
 }
+
+// Reusable components
 
 // Input
 function Input({ label, type, value, autoComplete, onChange, togglePasswordVisibility, isPasswordVisible, errorMessage }: {
