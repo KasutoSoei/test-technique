@@ -1,7 +1,11 @@
+import SignInForm from "./components/SignInForm";
+
 export default function Home() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div className="min-h-screen bg-[url('/produits.jpg')] bg-cover bg-center bg-no-repeat overflow-auto">
+      <div className="p-4 flex justify-center items-center">
+        <SignInForm />
+      </div>
+    </div>
   );
 }
